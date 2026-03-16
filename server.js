@@ -73,10 +73,7 @@ app.engine('hbs', engine({
     articleBody: (text) => {
       if (!text) return '';
       const escaped = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      return escaped.split(/
-
-+/).map(p => `<p>${p.replace(/
-/g, '<br>')}</p>`).join('');
+      return escaped.split(/\n\n+/).map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
     },
     ifCond: function(v1, op, v2, opts) {
       const ops = { '==': v1==v2, '===': v1===v2, '!=': v1!=v2, '>': v1>v2, '<': v1<v2 };
