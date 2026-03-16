@@ -1,0 +1,68 @@
+<div class="media-upload-zone" id="dropZone">
+  <form method="POST" action="/admin/media/upload" enctype="multipart/form-data" id="uploadForm">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 4v16M10 10l6-6 6 6" stroke="#52B788" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 22v4a2 2 0 002 2h20a2 2 0 002-2v-4" stroke="#52B788" stroke-width="1.2" stroke-linecap="round"/></svg>
+    <p class="muz-text">Drag & drop atau <label for="fileInput" class="muz-link">pilih file</label></p>
+    <p class="muz-sub">JPG, PNG, WebP, GIF · Maks 5MB per file · Maks 10 file sekaligus</p>
+    <input type="file" id="fileInput" name="files" multiple accept="image/*" style="display:none" onchange="document.getElementById('uploadForm').submit()">
+  </form>
+</div>
+
+{{#if files.length}}
+<div class="media-stats">
+  <span class="ms-count">{{files.length}} file</span>
+  <span class="ms-hint">Klik gambar untuk copy URL</span>
+</div>
+<div class="media-grid" id="mediaGrid">
+  {{#each files}}
+  <div class="media-item" onclick="copyUrl('{{url}}')">
+    <div class="mi-img-wrap">
+      <img src="{{url}}" alt="{{name}}" loading="lazy">
+      <div class="mi-overlay">
+        <span class="mi-copy">Copy URL</span>
+      </div>
+    </div>
+    <div class="mi-info">
+      <div class="mi-name">{{name}}</div>
+      <div class="mi-size">{{size}}</div>
+    </div>
+    <form method="POST" action="/admin/media/delete" class="mi-del-form" onsubmit="return confirm('Hapus gambar ini?')">
+      <input type="hidden" name="filename" value="{{name}}">
+      <button type="submit" class="mi-del" onclick="event.stopPropagation()">✕</button>
+    </form>
+  </div>
+  {{/each}}
+</div>
+{{else}}
+<div class="empty-admin" style="margin-top:32px;">Belum ada media. Upload gambar di atas.</div>
+{{/if}}
+
+<div id="copyToast" class="copy-toast">URL disalin!</div>
+
+<script>
+function copyUrl(url) {
+  var full = window.location.origin + url;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(full).then(function() { showCopy(); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = full; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta); showCopy();
+  }
+}
+function showCopy() {
+  var t = document.getElementById('copyToast');
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2000);
+}
+var dz = document.getElementById('dropZone');
+dz.addEventListener('dragover', function(e) { e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', function() { dz.classList.remove('drag-over'); });
+dz.addEventListener('drop', function(e) {
+  e.preventDefault(); dz.classList.remove('drag-over');
+  var fi = document.getElementById('fileInput');
+  fi.files = e.dataTransfer.files;
+  document.getElementById('uploadForm').submit();
+});
+document.getElementById('fileInput').addEventListener('click', function(e) { e.stopPropagation(); });
+</script>

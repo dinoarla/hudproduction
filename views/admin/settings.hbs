@@ -1,0 +1,74 @@
+{{#if (eq (lookup @root 'saved') '1')}}
+<div class="alert-success">✓ Pengaturan berhasil disimpan.</div>
+{{/if}}
+{{#if (eq (lookup @root 'error') 'password')}}
+<div class="alert-error">Password lama salah, atau password baru tidak cocok (min. 6 karakter).</div>
+{{/if}}
+
+<div class="settings-grid">
+  <!-- Site Settings -->
+  <div class="settings-section">
+    <h2 class="ss-title">Pengaturan Website</h2>
+    <form method="POST" action="/admin/settings/site" class="settings-form">
+      <div class="form-group">
+        <label class="form-label">Teks Announcement Bar</label>
+        <input class="form-input" type="text" name="announcement" value="{{siteSettings.announcement}}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Kontak</label>
+        <input class="form-input" type="email" name="email" value="{{siteSettings.email}}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nomor WhatsApp (format: +628xxx)</label>
+        <input class="form-input" type="text" name="whatsapp" value="{{siteSettings.whatsapp}}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Instagram Handle</label>
+        <input class="form-input" type="text" name="instagram" value="{{siteSettings.instagram}}" placeholder="@hudproduction">
+      </div>
+      <div class="form-group">
+        <label class="form-label">YouTube Channel</label>
+        <input class="form-input" type="text" name="youtube" value="{{siteSettings.youtube}}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Status Penerimaan Brief</label>
+        <label class="toggle-label">
+          <input type="checkbox" name="openForBrief" {{#if siteSettings.openForBrief}}checked{{/if}}>
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span>Buka untuk proyek baru</span>
+        </label>
+      </div>
+      <button type="submit" class="btn-primary">Simpan Pengaturan</button>
+    </form>
+  </div>
+
+  <!-- Password -->
+  <div class="settings-section">
+    <h2 class="ss-title">Ganti Password Admin</h2>
+    <form method="POST" action="/admin/settings/password" class="settings-form">
+      <div class="form-group">
+        <label class="form-label">Password Saat Ini</label>
+        <input class="form-input" type="password" name="currentPassword" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password Baru (min. 6 karakter)</label>
+        <input class="form-input" type="password" name="newPassword" required minlength="6">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Konfirmasi Password Baru</label>
+        <input class="form-input" type="password" name="confirmPassword" required>
+      </div>
+      <div class="form-note">Password default: <code>hud2025</code> — ganti segera setelah deploy!</div>
+      <button type="submit" class="btn-primary">Ganti Password</button>
+    </form>
+
+    <div class="settings-info">
+      <h3 class="si-title">Info Sistem</h3>
+      <div class="si-row"><span>Node.js</span><span>{{process.version}}</span></div>
+      <div class="si-row"><span>Environment</span><span>{{or process.env.NODE_ENV 'development'}}</span></div>
+      <div class="si-row"><span>Site URL</span><a href="{{siteUrl}}" target="_blank" class="td-link">{{siteUrl}}</a></div>
+      <div class="si-row"><span>Sitemap</span><a href="/sitemap.xml" target="_blank" class="td-link">/sitemap.xml</a></div>
+      <div class="si-row"><span>Health</span><a href="/api/health" target="_blank" class="td-link">/api/health</a></div>
+    </div>
+  </div>
+</div>

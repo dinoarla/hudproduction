@@ -1,0 +1,98 @@
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="sec-lbl"><span class="li on" data-lang="id">Mulai percakapan</span><span class="li" data-lang="en">Start a conversation</span><span class="li" data-lang="ar">ابدأ محادثة</span><span class="li" data-lang="zh">开始对话</span></p>
+    <h1 class="page-hero-title"><span class="li on" data-lang="id">Hubungi HUD</span><span class="li" data-lang="en">Get In Touch</span><span class="li" data-lang="ar">تواصل مع HUD</span><span class="li" data-lang="zh">联系 HUD</span></h1>
+  </div>
+</section>
+
+<section class="sec">
+  {{#if success}}
+  <div class="success-banner">
+    <svg width="20" height="20" viewBox="0 0 20 20"><path d="M4 10L8 14L16 6" stroke="#52B788" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+    <span class="li on" data-lang="id">Terima kasih, {{successName}}! Pesan kamu sudah kami terima. Kami akan menghubungi kamu segera.</span>
+    <span class="li" data-lang="en">Thank you, {{successName}}! We've received your message and will get back to you shortly.</span>
+    <span class="li" data-lang="ar">شكراً لك {{successName}}! تلقينا رسالتك وسنتواصل معك قريباً.</span>
+    <span class="li" data-lang="zh">谢谢，{{successName}}！我们已收到您的消息，将尽快回复您。</span>
+  </div>
+  {{/if}}
+
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <p class="about-sub" style="margin-bottom:28px;">
+        <span class="li on" data-lang="id">Punya cerita yang ingin diceritakan? Punya brand yang butuh suara? Kami ingin mendengar. Tidak ada brief terlalu kecil, tidak ada mimpi terlalu besar.</span>
+        <span class="li" data-lang="en">Have a story to tell? Have a brand that needs a voice? We want to hear it. No brief too small, no dream too big.</span>
+        <span class="li" data-lang="ar">لديك قصة تريد سردها؟ لديك علامة تجارية تحتاج صوتاً؟ نريد الاستماع. لا يوجد موجز صغير جداً ولا حلم كبير جداً.</span>
+        <span class="li" data-lang="zh">有故事想讲述？有品牌需要发声？我们想听。没有太小的需求，没有太大的梦想。</span>
+      </p>
+
+      <div class="contact-item">
+        <div class="ci-label">Email</div>
+        <a class="ci-value" href="mailto:{{meta.email}}">{{meta.email}}</a>
+      </div>
+      <div class="contact-item">
+        <div class="ci-label"><span class="li on" data-lang="id">Lokasi</span><span class="li" data-lang="en">Location</span><span class="li" data-lang="ar">الموقع</span><span class="li" data-lang="zh">地点</span></div>
+        <div class="ci-value">{{meta.location}}</div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-label">Instagram</div>
+        <a class="ci-value" href="https://instagram.com/hudproduction" target="_blank" rel="noopener">{{meta.instagram}}</a>
+      </div>
+      <div class="contact-item">
+        <div class="ci-label">WhatsApp</div>
+        <a class="ci-value" href="https://wa.me/" target="_blank" rel="noopener">{{meta.whatsapp}}</a>
+      </div>
+      <div class="contact-item">
+        <div class="ci-label">YouTube</div>
+        <div class="ci-value">{{meta.youtube}}</div>
+      </div>
+
+      <div class="contact-divs" style="margin-top:32px;">
+        <p class="sec-lbl" style="margin-bottom:14px;"><span class="li on" data-lang="id">Kami menerima proyek</span><span class="li" data-lang="en">We accept projects in</span><span class="li" data-lang="ar">نقبل مشاريع في</span><span class="li" data-lang="zh">我们接受以下项目</span></p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <a class="div-pill" href="/works?div=film">Film &amp; Series</a>
+          <a class="div-pill" href="/works?div=brand">Brand Film</a>
+          <a class="div-pill" href="/works?div=digital">Digital Content</a>
+          <a class="div-pill" href="/works?div=animasi">Animasi</a>
+          <a class="div-pill" href="/works?div=dok">Dokumenter</a>
+          <a class="div-pill" href="/works?div=podcast">Cinematic Podcast</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-area">
+      <p class="sec-lbl" style="margin-bottom:18px;">
+        <span class="li on" data-lang="id">Kirim pesan</span>
+        <span class="li" data-lang="en">Send a message</span>
+        <span class="li" data-lang="ar">أرسل رسالة</span>
+        <span class="li" data-lang="zh">发送消息</span>
+      </p>
+      <form method="POST" action="/contact" class="contact-form">
+        <div class="form-row">
+          <input class="form-field" type="text" name="name" placeholder="Nama / Name / الاسم / 姓名" required autocomplete="name">
+          <input class="form-field" type="email" name="email" placeholder="Email" required autocomplete="email">
+        </div>
+        <div class="form-row">
+          <select class="form-field" name="division" required>
+            <option value="" disabled selected>Pilih Divisi / Division / القسم / 部门</option>
+            <option value="Film & Series">Film &amp; Series</option>
+            <option value="Digital Content">Digital Content</option>
+            <option value="Brand Film">Brand Film</option>
+            <option value="Animasi">Animasi</option>
+            <option value="Dokumenter">Dokumenter</option>
+            <option value="Cinematic Podcast">Cinematic Podcast</option>
+          </select>
+          <input class="form-field" type="text" name="budget" placeholder="Budget (Rp / USD / AED / CNY)">
+        </div>
+        <div class="form-row">
+          <textarea class="form-field form-full" name="message" rows="6" placeholder="Ceritakan proyek kalian... / Tell us about your project... / أخبرنا عن مشروعك... / 请描述您的项目..." required></textarea>
+        </div>
+        <button class="btn-submit" type="submit">
+          <span class="li on" data-lang="id">Kirim Pesan</span>
+          <span class="li" data-lang="en">Send Message</span>
+          <span class="li" data-lang="ar">إرسال الرسالة</span>
+          <span class="li" data-lang="zh">发送消息</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

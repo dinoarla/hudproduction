@@ -1,0 +1,77 @@
+{{#if submissions.length}}
+<div class="table-wrap">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Email</th>
+        <th>Divisi</th>
+        <th>Budget</th>
+        <th>Tanggal</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each submissions}}
+      <tr class="{{#unless read}}tr-unread{{/unless}}">
+        <td class="td-title">
+          <div class="td-main">{{name}}</div>
+          <div class="td-sub" style="white-space:normal;max-width:200px;">{{truncate message 60}}</div>
+        </td>
+        <td><a href="mailto:{{email}}" class="td-link">{{email}}</a></td>
+        <td><span class="badge-cat">{{or division '-'}}</span></td>
+        <td class="td-date">{{or budget '-'}}</td>
+        <td class="td-date">{{formatDateShort createdAt}}</td>
+        <td class="td-actions">
+          <button onclick="showMessage('{{name}}','{{email}}','{{division}}','{{budget}}','{{createdAt}}',`{{message}}`)" class="act-view">Lihat</button>
+          <form method="POST" action="/admin/contacts/delete/{{id}}" style="display:inline;" onsubmit="return confirm('Hapus brief ini?')">
+            <button type="submit" class="act-delete">Hapus</button>
+          </form>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+{{else}}
+<div class="empty-admin">Belum ada brief masuk.</div>
+{{/if}}
+
+<!-- Message Modal -->
+<div id="msgModal" class="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="mName" class="modal-title"></h3>
+      <button onclick="closeModal()" class="modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="msg-row"><span class="msg-label">Email</span><a id="mEmail" href="#" class="msg-val td-link"></a></div>
+      <div class="msg-row"><span class="msg-label">Divisi</span><span id="mDiv" class="msg-val"></span></div>
+      <div class="msg-row"><span class="msg-label">Budget</span><span id="mBudget" class="msg-val"></span></div>
+      <div class="msg-row"><span class="msg-label">Tanggal</span><span id="mDate" class="msg-val"></span></div>
+      <div class="msg-row msg-message"><span class="msg-label">Pesan</span><div id="mMsg" class="msg-val msg-body"></div></div>
+    </div>
+    <div class="modal-footer">
+      <a id="mReply" href="#" class="btn-primary">Reply Email →</a>
+      <button onclick="closeModal()" class="btn-secondary">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function showMessage(name, email, division, budget, date, msg) {
+  document.getElementById('mName').textContent = name;
+  document.getElementById('mEmail').textContent = email;
+  document.getElementById('mEmail').href = 'mailto:' + email;
+  document.getElementById('mDiv').textContent = division || '-';
+  document.getElementById('mBudget').textContent = budget || '-';
+  document.getElementById('mDate').textContent = date ? new Date(date).toLocaleDateString('id-ID') : '-';
+  document.getElementById('mMsg').textContent = msg;
+  document.getElementById('mReply').href = 'mailto:' + email + '?subject=Re: Brief ' + division + ' - HUD Production House';
+  document.getElementById('msgModal').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('msgModal').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+</script>

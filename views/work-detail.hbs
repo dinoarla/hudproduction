@@ -1,0 +1,74 @@
+<section class="work-hero" style="background-image:url('{{work.image}}');">
+  <div class="work-hero-overlay"></div>
+  <div class="work-hero-content">
+    <a href="/works" class="back-link">← <span class="li on" data-lang="id">Kembali</span><span class="li" data-lang="en">Back</span><span class="li" data-lang="ar">عودة</span><span class="li" data-lang="zh">返回</span></a>
+    <div class="work-cat">{{work.category}}</div>
+    <h1 class="work-title">
+      <span class="li on" data-lang="id">{{work.titleId}}</span>
+      <span class="li" data-lang="en">{{work.titleEn}}</span>
+      <span class="li" data-lang="ar">{{work.titleAr}}</span>
+      <span class="li" data-lang="zh">{{work.titleZh}}</span>
+    </h1>
+    <div class="work-meta">{{work.year}} · {{work.duration}} · {{work.division}}</div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="work-detail-grid">
+    <div class="work-desc-col">
+      <p class="work-desc">
+        <span class="li on" data-lang="id">{{work.descId}}</span>
+        <span class="li" data-lang="en">{{work.descEn}}</span>
+        <span class="li" data-lang="ar">{{work.descAr}}</span>
+        <span class="li" data-lang="zh">{{work.descZh}}</span>
+      </p>
+      <div class="work-play-area">
+        <div class="video-player-lg">
+          <div class="video-player-bg"></div>
+          <img src="{{work.image}}" alt="{{work.titleEn}}" class="video-thumb-lg">
+          <div class="video-play-btn-lg">
+            <svg width="28" height="28" viewBox="0 0 28 28"><polygon points="8,4 24,14 8,24" fill="#52B788"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="work-info-col">
+      <div class="work-info-box">
+        <div class="wi-row"><div class="wi-label"><span class="li on" data-lang="id">Divisi</span><span class="li" data-lang="en">Division</span><span class="li" data-lang="ar">القسم</span><span class="li" data-lang="zh">部门</span></div><div class="wi-val">{{work.division}}</div></div>
+        <div class="wi-row"><div class="wi-label"><span class="li on" data-lang="id">Kategori</span><span class="li" data-lang="en">Category</span><span class="li" data-lang="ar">الفئة</span><span class="li" data-lang="zh">类别</span></div><div class="wi-val">{{work.category}}</div></div>
+        <div class="wi-row"><div class="wi-label"><span class="li on" data-lang="id">Tahun</span><span class="li" data-lang="en">Year</span><span class="li" data-lang="ar">السنة</span><span class="li" data-lang="zh">年份</span></div><div class="wi-val">{{work.year}}</div></div>
+        <div class="wi-row"><div class="wi-label"><span class="li on" data-lang="id">Durasi</span><span class="li" data-lang="en">Duration</span><span class="li" data-lang="ar">المدة</span><span class="li" data-lang="zh">时长</span></div><div class="wi-val">{{work.duration}}</div></div>
+      </div>
+      <a href="/contact" class="sbtn-p" style="width:100%;text-align:center;display:block;margin-top:16px;">
+        <span class="li on" data-lang="id">Proyek Serupa? Hubungi Kami</span>
+        <span class="li" data-lang="en">Similar Project? Contact Us</span>
+        <span class="li" data-lang="ar">مشروع مماثل؟ تواصل معنا</span>
+        <span class="li" data-lang="zh">类似项目？联系我们</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{{#if related.length}}
+<section class="sec" style="border-top:0.5px solid var(--line);padding-top:48px;">
+  <div class="sec-hdr">
+    <div>
+      <p class="sec-lbl"><span class="li on" data-lang="id">Karya Lain</span><span class="li" data-lang="en">Related Works</span><span class="li" data-lang="ar">أعمال ذات صلة</span><span class="li" data-lang="zh">相关作品</span></p>
+      <h2 class="sec-ttl">{{work.division}}</h2>
+    </div>
+    <a href="/works?div={{work.division}}" class="sec-more"><span class="li on" data-lang="id">Lihat Semua →</span><span class="li" data-lang="en">View All →</span><span class="li" data-lang="ar">عرض الكل →</span><span class="li" data-lang="zh">查看全部 →</span></a>
+  </div>
+  <div class="cgrid">
+    {{#each related}}
+    <a href="/works/{{id}}" class="ccard">
+      <div class="ccard-img" style="background-image:url('{{image}}');"><div class="ccard-num">{{num}}</div></div>
+      <div class="ccard-body">
+        <div class="ccard-cat">{{category}}</div>
+        <h3 class="ccard-title"><span class="li on" data-lang="id">{{titleId}}</span><span class="li" data-lang="en">{{titleEn}}</span><span class="li" data-lang="ar">{{titleAr}}</span><span class="li" data-lang="zh">{{titleZh}}</span></h3>
+      </div>
+      <div class="ccard-foot"><span class="ccard-year">{{year}} · {{duration}}</span><span class="ccard-arr">→</span></div>
+    </a>
+    {{/each}}
+  </div>
+</section>
+{{/if}}

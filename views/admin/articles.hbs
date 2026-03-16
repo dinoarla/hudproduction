@@ -1,0 +1,51 @@
+<div class="section-header">
+  <div></div>
+  <a href="/admin/articles/new" class="btn-primary">+ Artikel Baru</a>
+</div>
+
+{{#if articles.length}}
+<div class="table-wrap">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Judul</th>
+        <th>Kategori</th>
+        <th>Status</th>
+        <th>Tanggal</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each articles}}
+      <tr>
+        <td class="td-title">
+          <div class="td-main">{{truncate (or titleId titleEn) 50}}</div>
+          {{#if titleEn}}<div class="td-sub">{{truncate titleEn 40}}</div>{{/if}}
+        </td>
+        <td><span class="badge-cat">{{category}}</span></td>
+        <td>
+          {{#if published}}
+          <span class="badge-pub">Tayang</span>
+          {{else}}
+          <span class="badge-draft">Draft</span>
+          {{/if}}
+        </td>
+        <td class="td-date">{{formatDateShort createdAt}}</td>
+        <td class="td-actions">
+          <a href="/blog/{{or slug id}}" target="_blank" class="act-view" title="Lihat">↗</a>
+          <a href="/admin/articles/edit/{{id}}" class="act-edit">Edit</a>
+          <form method="POST" action="/admin/articles/delete/{{id}}" style="display:inline;" onsubmit="return confirm('Hapus artikel ini?')">
+            <button type="submit" class="act-delete">Hapus</button>
+          </form>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+{{else}}
+<div class="empty-admin">
+  <p>Belum ada artikel.</p>
+  <a href="/admin/articles/new" class="btn-primary" style="margin-top:16px;">Tulis Artikel Pertama →</a>
+</div>
+{{/if}}

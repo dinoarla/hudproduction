@@ -1,0 +1,57 @@
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="sec-lbl"><span class="li on" data-lang="id">Semua yang kami buat</span><span class="li" data-lang="en">Everything we make</span><span class="li" data-lang="ar">كل ما نصنعه</span><span class="li" data-lang="zh">我们的全部作品</span></p>
+    <h1 class="page-hero-title"><span class="li on" data-lang="id">Karya HUD</span><span class="li" data-lang="en">HUD Works</span><span class="li" data-lang="ar">أعمال HUD</span><span class="li" data-lang="zh">HUD作品</span></h1>
+  </div>
+</section>
+
+<div class="works-divnav">
+  <a class="divtab{{#eq activeDivision 'all'}} on{{/eq}}" href="/works">
+    <span class="li on" data-lang="id">Semua</span><span class="li" data-lang="en">All</span><span class="li" data-lang="ar">الكل</span><span class="li" data-lang="zh">全部</span>
+  </a>
+  <a class="divtab{{#eq activeDivision 'film'}} on{{/eq}}" href="/works?div=film">Film &amp; Series</a>
+  <a class="divtab{{#eq activeDivision 'brand'}} on{{/eq}}" href="/works?div=brand">Brand Film</a>
+  <a class="divtab{{#eq activeDivision 'digital'}} on{{/eq}}" href="/works?div=digital">Digital Content</a>
+  <a class="divtab{{#eq activeDivision 'animasi'}} on{{/eq}}" href="/works?div=animasi">Animasi</a>
+  <a class="divtab{{#eq activeDivision 'dok'}} on{{/eq}}" href="/works?div=dok">Dokumenter</a>
+  <a class="divtab{{#eq activeDivision 'podcast'}} on{{/eq}}" href="/works?div=podcast">Podcast</a>
+</div>
+
+<section class="sec">
+  <div class="cgrid cgrid-auto">
+    {{#each filteredWorks}}
+    <a href="/works/{{id}}" class="ccard">
+      <div class="ccard-img" style="background-image:url('{{image}}');"><div class="ccard-num">{{num}}</div></div>
+      <div class="ccard-body">
+        <div class="ccard-cat">{{category}}</div>
+        <h3 class="ccard-title">
+          <span class="li on" data-lang="id">{{titleId}}</span>
+          <span class="li" data-lang="en">{{titleEn}}</span>
+          <span class="li" data-lang="ar">{{titleAr}}</span>
+          <span class="li" data-lang="zh">{{titleZh}}</span>
+        </h3>
+        <p class="ccard-desc">
+          <span class="li on" data-lang="id">{{descId}}</span>
+          <span class="li" data-lang="en">{{descEn}}</span>
+          <span class="li" data-lang="ar">{{descAr}}</span>
+          <span class="li" data-lang="zh">{{descZh}}</span>
+        </p>
+      </div>
+      <div class="ccard-foot"><span class="ccard-year">{{year}} · {{duration}}</span><span class="ccard-arr">→</span></div>
+    </a>
+    {{/each}}
+  </div>
+  {{#unless filteredWorks.length}}
+  <div class="empty-state">
+    <p><span class="li on" data-lang="id">Belum ada karya di divisi ini. Segera hadir.</span><span class="li" data-lang="en">No works in this division yet. Coming soon.</span><span class="li" data-lang="ar">لا توجد أعمال في هذا القسم بعد. قريباً.</span><span class="li" data-lang="zh">此部门暂无作品。敬请期待。</span></p>
+  </div>
+  {{/unless}}
+</section>
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-title"><span class="li on" data-lang="id">Ingin berkolaborasi?</span><span class="li" data-lang="en">Want to collaborate?</span><span class="li" data-lang="ar">تريد التعاون؟</span><span class="li" data-lang="zh">想合作吗？</span></h2>
+    <p class="cta-desc"><span class="li on" data-lang="id">Kami selalu terbuka untuk proyek baru.</span><span class="li" data-lang="en">We're always open to new projects.</span><span class="li" data-lang="ar">نحن دائماً منفتحون على مشاريع جديدة.</span><span class="li" data-lang="zh">我们随时欢迎新项目。</span></p>
+    <a href="/contact" class="sbtn-p"><span class="li on" data-lang="id">Hubungi Kami →</span><span class="li" data-lang="en">Contact Us →</span><span class="li" data-lang="ar">تواصل معنا →</span><span class="li" data-lang="zh">联系我们 →</span></a>
+  </div>
+</section>

@@ -1,0 +1,92 @@
+<div class="dash-stats">
+  <a href="/admin/articles" class="stat-card">
+    <div class="sc-num">{{stats.articles}}</div>
+    <div class="sc-label">Artikel</div>
+    <div class="sc-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1"/><line x1="6" y1="7" x2="14" y2="7" stroke="currentColor" stroke-width="1"/><line x1="6" y1="10" x2="11" y2="10" stroke="currentColor" stroke-width="1"/></svg>
+    </div>
+  </a>
+  <a href="/works" target="_blank" class="stat-card">
+    <div class="sc-num">{{stats.works}}</div>
+    <div class="sc-label">Karya</div>
+    <div class="sc-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1"/><polygon points="8,8 8,12 13,10" fill="currentColor" opacity="0.5"/></svg>
+    </div>
+  </a>
+  <a href="/admin/contacts" class="stat-card {{#if stats.unread}}sc-alert{{/if}}">
+    <div class="sc-num">{{stats.contacts}}</div>
+    <div class="sc-label">Total Brief</div>
+    {{#if stats.unread}}<div class="sc-badge">{{stats.unread}} baru</div>{{/if}}
+    <div class="sc-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1"/><path d="M2 6l8 6 8-6" stroke="currentColor" stroke-width="1"/></svg>
+    </div>
+  </a>
+  <a href="/" target="_blank" class="stat-card">
+    <div class="sc-num">∞</div>
+    <div class="sc-label">Cerita</div>
+    <div class="sc-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1"/><circle cx="10" cy="10" r="2" fill="currentColor" opacity="0.5"/></svg>
+    </div>
+  </a>
+</div>
+
+<div class="dash-grid">
+  <div class="dash-section">
+    <div class="ds-header">
+      <h2 class="ds-title">Artikel Terbaru</h2>
+      <a href="/admin/articles/new" class="ds-action">+ Tulis Artikel</a>
+    </div>
+    {{#if recentArticles.length}}
+    <div class="ds-list">
+      {{#each recentArticles}}
+      <div class="ds-item">
+        <div class="ds-item-body">
+          <div class="ds-item-title">{{or titleId titleEn}}</div>
+          <div class="ds-item-meta">{{category}} · {{formatDateShort createdAt}}</div>
+        </div>
+        <div class="ds-item-actions">
+          {{#if published}}<span class="badge-pub">Tayang</span>{{else}}<span class="badge-draft">Draft</span>{{/if}}
+          <a href="/admin/articles/edit/{{id}}" class="ds-edit">Edit</a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{else}}
+    <div class="ds-empty">Belum ada artikel. <a href="/admin/articles/new">Tulis sekarang →</a></div>
+    {{/if}}
+  </div>
+
+  <div class="dash-section">
+    <div class="ds-header">
+      <h2 class="ds-title">Brief Terbaru</h2>
+      <a href="/admin/contacts" class="ds-action">Lihat Semua</a>
+    </div>
+    {{#if recentContacts.length}}
+    <div class="ds-list">
+      {{#each recentContacts}}
+      <div class="ds-item">
+        <div class="ds-item-body">
+          <div class="ds-item-title">{{name}} — {{division}}</div>
+          <div class="ds-item-meta">{{email}} · {{formatDateShort createdAt}}</div>
+        </div>
+        {{#unless read}}<div class="ds-item-actions"><span class="badge-new">Baru</span></div>{{/unless}}
+      </div>
+      {{/each}}
+    </div>
+    {{else}}
+    <div class="ds-empty">Belum ada brief masuk.</div>
+    {{/if}}
+  </div>
+</div>
+
+<div class="dash-quick">
+  <h2 class="dq-title">Aksi Cepat</h2>
+  <div class="dq-grid">
+    <a href="/admin/articles/new" class="dq-btn">+ Artikel Baru</a>
+    <a href="/admin/contacts" class="dq-btn">Lihat Brief</a>
+    <a href="/admin/media" class="dq-btn">Upload Media</a>
+    <a href="/admin/settings" class="dq-btn">Pengaturan</a>
+    <a href="/blog" target="_blank" class="dq-btn">Lihat Blog</a>
+    <a href="/api/health" target="_blank" class="dq-btn">Health Check</a>
+  </div>
+</div>

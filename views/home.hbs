@@ -1,0 +1,380 @@
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">
+  <span class="li on" data-lang="id">✦ &nbsp; Selamat datang di HUD Production House — Happiness Until Destination &nbsp; ✦ &nbsp; Sekarang menerima proyek Brand Film &amp; Web Series 2025 &nbsp; ✦</span>
+  <span class="li" data-lang="en">✦ &nbsp; Welcome to HUD Production House — Happiness Until Destination &nbsp; ✦ &nbsp; Now accepting Brand Film &amp; Web Series projects 2025 &nbsp; ✦</span>
+  <span class="li" data-lang="ar">✦ &nbsp; مرحباً بكم في HUD — السعادة حتى الوصول &nbsp; ✦ &nbsp; نقبل الآن مشاريع 2025 &nbsp; ✦</span>
+  <span class="li" data-lang="zh">✦ &nbsp; 欢迎来到 HUD 制片公司 — 快乐直至终点 &nbsp; ✦ &nbsp; 现接受2025年项目 &nbsp; ✦</span>
+</div>
+
+<!-- DIV TABS -->
+<div class="divnav" id="divnav">
+  <button class="divtab on" onclick="switchDiv('all',this)">
+    <span class="li on" data-lang="id">Semua Karya</span><span class="li" data-lang="en">All Works</span><span class="li" data-lang="ar">كل الأعمال</span><span class="li" data-lang="zh">全部作品</span>
+  </button>
+  <button class="divtab" onclick="switchDiv('film',this)">Film &amp; Series</button>
+  <button class="divtab" onclick="switchDiv('digital',this)">Digital Content</button>
+  <button class="divtab" onclick="switchDiv('brand',this)">Brand Film</button>
+  <button class="divtab" onclick="switchDiv('animasi',this)">Animasi</button>
+  <button class="divtab" onclick="switchDiv('dok',this)">Dokumenter</button>
+  <button class="divtab" onclick="switchDiv('podcast',this)">Cinematic Podcast</button>
+</div>
+
+<!-- HERO CAROUSEL -->
+<section class="hero-wrap" id="hero">
+  <div class="hero-slides" id="heroSlides">
+    {{#each heroSlides}}
+    <div class="hero-slide" style="background-image:url('{{image}}');" data-div="{{id}}">
+      <div class="hero-overlay"></div>
+      <div class="slide-content">
+        <div class="slide-cat">{{division}}</div>
+        <h1 class="slide-title">
+          <span class="li on" data-lang="id">{{titleId}}</span>
+          <span class="li" data-lang="en">{{titleEn}}</span>
+          <span class="li" data-lang="ar">{{titleAr}}</span>
+          <span class="li" data-lang="zh">{{titleZh}}</span>
+        </h1>
+        <p class="slide-desc">
+          <span class="li on" data-lang="id">{{descId}}</span>
+          <span class="li" data-lang="en">{{descEn}}</span>
+          <span class="li" data-lang="ar">{{descAr}}</span>
+          <span class="li" data-lang="zh">{{descZh}}</span>
+        </p>
+        <div class="slide-btns">
+          <a href="{{ctaLink}}" class="sbtn-p">
+            <span class="li on" data-lang="id">{{ctaPrimaryId}}</span>
+            <span class="li" data-lang="en">{{ctaPrimaryEn}}</span>
+            <span class="li" data-lang="ar">{{ctaPrimaryAr}}</span>
+            <span class="li" data-lang="zh">{{ctaPrimaryZh}}</span>
+          </a>
+          <a href="/works" class="sbtn-g">
+            <span class="li on" data-lang="id">{{ctaSecondaryId}}</span>
+            <span class="li" data-lang="en">{{ctaSecondaryEn}}</span>
+            <span class="li" data-lang="ar">{{ctaSecondaryAr}}</span>
+            <span class="li" data-lang="zh">{{ctaSecondaryZh}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <button class="carousel-prev" onclick="prevSlide()" aria-label="Previous">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7L9 12" stroke="#52B788" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="carousel-next" onclick="nextSlide()" aria-label="Next">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2L10 7L5 12" stroke="#52B788" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="carousel-dots" id="heroDots">
+    {{#each heroSlides}}
+    <button class="cdot{{#eq @index 0}} on{{/eq}}" onclick="goSlide({{@index}})" aria-label="Slide {{@index}}"></button>
+    {{/each}}
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-label">
+    <span class="li on" data-lang="id">Terbaru</span>
+    <span class="li" data-lang="en">Latest</span>
+    <span class="li" data-lang="ar">الأحدث</span>
+    <span class="li" data-lang="zh">最新</span>
+  </div>
+  <div class="ticker-overflow">
+    <div class="ticker-track">
+      {{#each tickerItems}}<span class="ticker-item">{{this}}</span>{{/each}}
+      {{#each tickerItems}}<span class="ticker-item">{{this}}</span>{{/each}}
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED WORKS -->
+<section class="sec" id="works">
+  <div class="sec-hdr">
+    <div>
+      <p class="sec-lbl"><span class="li on" data-lang="id">Karya Pilihan</span><span class="li" data-lang="en">Featured Works</span><span class="li" data-lang="ar">أعمال مختارة</span><span class="li" data-lang="zh">精选作品</span></p>
+      <h2 class="sec-ttl"><span class="li on" data-lang="id">Terbaru dari HUD</span><span class="li" data-lang="en">Latest from HUD</span><span class="li" data-lang="ar">الأحدث من HUD</span><span class="li" data-lang="zh">HUD最新作品</span></h2>
+    </div>
+    <a href="/works" class="sec-more"><span class="li on" data-lang="id">Lihat Semua →</span><span class="li" data-lang="en">View All →</span><span class="li" data-lang="ar">عرض الكل →</span><span class="li" data-lang="zh">查看全部 →</span></a>
+  </div>
+  <div class="feat-wide">
+    <a href="/works/{{featuredWorks.[0].id}}" class="feat-main" style="background-image:url('{{featuredWorks.[0].image}}');">
+      <div class="feat-overlay"></div>
+      <div class="feat-main-body">
+        <div class="feat-sm-cat">{{featuredWorks.[0].division}} · {{featuredWorks.[0].year}}</div>
+        <h3 class="feat-main-title">
+          <span class="li on" data-lang="id">{{featuredWorks.[0].titleId}}</span>
+          <span class="li" data-lang="en">{{featuredWorks.[0].titleEn}}</span>
+          <span class="li" data-lang="ar">{{featuredWorks.[0].titleAr}}</span>
+          <span class="li" data-lang="zh">{{featuredWorks.[0].titleZh}}</span>
+        </h3>
+        <p class="feat-main-desc">
+          <span class="li on" data-lang="id">{{featuredWorks.[0].descId}}</span>
+          <span class="li" data-lang="en">{{featuredWorks.[0].descEn}}</span>
+          <span class="li" data-lang="ar">{{featuredWorks.[0].descAr}}</span>
+          <span class="li" data-lang="zh">{{featuredWorks.[0].descZh}}</span>
+        </p>
+        <span class="sbtn-p-sm"><span class="li on" data-lang="id">Tonton</span><span class="li" data-lang="en">Watch</span><span class="li" data-lang="ar">شاهد</span><span class="li" data-lang="zh">观看</span></span>
+      </div>
+    </a>
+    <div class="feat-side">
+      {{#each featuredWorks}}{{#unless featured}}
+      <a href="/works/{{id}}" class="feat-sm">
+        <div class="feat-sm-thumb" style="background-image:url('{{image}}');"></div>
+        <div class="feat-sm-body">
+          <div class="feat-sm-cat">{{division}}</div>
+          <div class="feat-sm-title">
+            <span class="li on" data-lang="id">{{titleId}}</span>
+            <span class="li" data-lang="en">{{titleEn}}</span>
+            <span class="li" data-lang="ar">{{titleAr}}</span>
+            <span class="li" data-lang="zh">{{titleZh}}</span>
+          </div>
+          <div class="feat-sm-time">{{year}} · {{duration}}</div>
+        </div>
+      </a>
+      {{/unless}}{{/each}}
+    </div>
+  </div>
+</section>
+
+<!-- WORKS GRID (first 6) -->
+<section class="sec" style="padding-top:0;">
+  <div class="sec-hdr">
+    <div>
+      <p class="sec-lbl">Film &amp; Series</p>
+      <h2 class="sec-ttl"><span class="li on" data-lang="id">Film &amp; Web Series</span><span class="li" data-lang="en">Film &amp; Web Series</span><span class="li" data-lang="ar">الأفلام والمسلسلات</span><span class="li" data-lang="zh">电影与网络剧</span></h2>
+    </div>
+    <a href="/works?div=film" class="sec-more"><span class="li on" data-lang="id">Lihat Semua →</span><span class="li" data-lang="en">View All →</span><span class="li" data-lang="ar">عرض الكل →</span><span class="li" data-lang="zh">查看全部 →</span></a>
+  </div>
+  <div class="cgrid">
+    {{#each works}}{{#eq division 'film'}}
+    <a href="/works/{{id}}" class="ccard">
+      <div class="ccard-img" style="background-image:url('{{image}}');"><div class="ccard-num">{{num}}</div></div>
+      <div class="ccard-body">
+        <div class="ccard-cat">{{category}}</div>
+        <h3 class="ccard-title"><span class="li on" data-lang="id">{{titleId}}</span><span class="li" data-lang="en">{{titleEn}}</span><span class="li" data-lang="ar">{{titleAr}}</span><span class="li" data-lang="zh">{{titleZh}}</span></h3>
+        <p class="ccard-desc"><span class="li on" data-lang="id">{{descId}}</span><span class="li" data-lang="en">{{descEn}}</span><span class="li" data-lang="ar">{{descAr}}</span><span class="li" data-lang="zh">{{descZh}}</span></p>
+      </div>
+      <div class="ccard-foot"><span class="ccard-year">{{year}} · {{duration}}</span><span class="ccard-arr">→</span></div>
+    </a>
+    {{/eq}}{{/each}}
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="video-section" id="videos">
+  <div class="sec-full">
+    <div class="sec-hdr" style="border-bottom-color:rgba(45,106,79,0.2);">
+      <div>
+        <p class="sec-lbl"><span class="li on" data-lang="id">Tonton Sekarang</span><span class="li" data-lang="en">Watch Now</span><span class="li" data-lang="ar">شاهد الآن</span><span class="li" data-lang="zh">立即观看</span></p>
+        <h2 class="sec-ttl"><span class="li on" data-lang="id">Video Terbaru HUD</span><span class="li" data-lang="en">Latest HUD Videos</span><span class="li" data-lang="ar">أحدث مقاطع HUD</span><span class="li" data-lang="zh">HUD最新视频</span></h2>
+      </div>
+      <a href="https://youtube.com" target="_blank" rel="noopener" class="sec-more">YouTube →</a>
+    </div>
+    <div class="video-main-wrap">
+      <div>
+        <div class="video-player" id="videoPlayer">
+          <div class="video-player-bg"></div>
+          <img class="video-thumb" id="videoThumb" src="{{videos.[0].thumb}}" alt="video thumbnail">
+          <div class="video-play-btn">
+            <svg width="22" height="22" viewBox="0 0 22 22"><polygon points="7,3 19,11 7,19" fill="#52B788"/></svg>
+          </div>
+          <div class="video-time" id="videoTime">{{videos.[0].duration}}</div>
+        </div>
+        <div class="video-info">
+          <div class="video-info-cat" id="videoCat">{{videos.[0].category}}</div>
+          <h3 class="video-info-title" id="videoTitle">
+            <span class="li on" data-lang="id" id="vt-id">{{videos.[0].titleId}}</span>
+            <span class="li" data-lang="en" id="vt-en">{{videos.[0].titleEn}}</span>
+            <span class="li" data-lang="ar" id="vt-ar">{{videos.[0].titleAr}}</span>
+            <span class="li" data-lang="zh" id="vt-zh">{{videos.[0].titleZh}}</span>
+          </h3>
+          <p class="video-info-desc">
+            <span class="li on" data-lang="id" id="vd-id">{{videos.[0].descId}}</span>
+            <span class="li" data-lang="en" id="vd-en">{{videos.[0].descEn}}</span>
+            <span class="li" data-lang="ar" id="vd-ar">{{videos.[0].descAr}}</span>
+            <span class="li" data-lang="zh" id="vd-zh">{{videos.[0].descZh}}</span>
+          </p>
+        </div>
+      </div>
+      <div class="video-playlist">
+        {{#each videos}}
+        <div class="vp-item{{#eq @index 0}} on{{/eq}}" onclick="selectVideo(this,
+          '{{titleId}}','{{titleEn}}','{{titleAr}}','{{titleZh}}',
+          '{{descId}}','{{descEn}}','{{descAr}}','{{descZh}}',
+          '{{category}}','{{duration}}','{{thumb}}'
+        )">
+          <div class="vp-thumb" style="background-image:url('{{thumb}}');"></div>
+          <div>
+            <div class="vp-cat">{{category}}</div>
+            <div class="vp-title">
+              <span class="li on" data-lang="id">{{titleId}}</span>
+              <span class="li" data-lang="en">{{titleEn}}</span>
+              <span class="li" data-lang="ar">{{titleAr}}</span>
+              <span class="li" data-lang="zh">{{titleZh}}</span>
+            </div>
+            <div class="vp-dur">{{duration}}</div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND FILM + DIGITAL GRID -->
+<section class="sec">
+  <div class="sec-hdr">
+    <div>
+      <p class="sec-lbl">Brand Film &amp; Digital Content</p>
+      <h2 class="sec-ttl"><span class="li on" data-lang="id">Korporat &amp; Digital</span><span class="li" data-lang="en">Corporate &amp; Digital</span><span class="li" data-lang="ar">شركات ورقمي</span><span class="li" data-lang="zh">企业与数字</span></h2>
+    </div>
+    <a href="/works?div=brand" class="sec-more"><span class="li on" data-lang="id">Lihat Semua →</span><span class="li" data-lang="en">View All →</span><span class="li" data-lang="ar">عرض الكل →</span><span class="li" data-lang="zh">查看全部 →</span></a>
+  </div>
+  <div class="cgrid cgrid-4">
+    {{#each works}}{{#eq division 'brand'}}
+    <a href="/works/{{id}}" class="ccard">
+      <div class="ccard-img" style="background-image:url('{{image}}');aspect-ratio:1/1;"><div class="ccard-num">{{num}}</div></div>
+      <div class="ccard-body">
+        <div class="ccard-cat">{{category}}</div>
+        <h3 class="ccard-title"><span class="li on" data-lang="id">{{titleId}}</span><span class="li" data-lang="en">{{titleEn}}</span><span class="li" data-lang="ar">{{titleAr}}</span><span class="li" data-lang="zh">{{titleZh}}</span></h3>
+      </div>
+      <div class="ccard-foot"><span class="ccard-year">{{year}} · {{duration}}</span><span class="ccard-arr">→</span></div>
+    </a>
+    {{/eq}}{{/each}}
+    {{#each works}}{{#eq division 'digital'}}
+    <a href="/works/{{id}}" class="ccard">
+      <div class="ccard-img" style="background-image:url('{{image}}');aspect-ratio:1/1;"><div class="ccard-num">{{num}}</div></div>
+      <div class="ccard-body">
+        <div class="ccard-cat">{{category}}</div>
+        <h3 class="ccard-title"><span class="li on" data-lang="id">{{titleId}}</span><span class="li" data-lang="en">{{titleEn}}</span><span class="li" data-lang="ar">{{titleAr}}</span><span class="li" data-lang="zh">{{titleZh}}</span></h3>
+      </div>
+      <div class="ccard-foot"><span class="ccard-year">{{year}} · {{duration}}</span><span class="ccard-arr">→</span></div>
+    </a>
+    {{/eq}}{{/each}}
+  </div>
+</section>
+
+<!-- LATEST + SIDEBAR -->
+<section class="latest-section" id="latest">
+  <div class="sec-full">
+    <div class="sec-hdr" style="border-bottom-color:rgba(45,106,79,0.2);">
+      <div>
+        <p class="sec-lbl"><span class="li on" data-lang="id">Semua Divisi</span><span class="li" data-lang="en">All Divisions</span><span class="li" data-lang="ar">جميع الأقسام</span><span class="li" data-lang="zh">所有部门</span></p>
+        <h2 class="sec-ttl"><span class="li on" data-lang="id">Karya Terbaru</span><span class="li" data-lang="en">The Latest</span><span class="li" data-lang="ar">الأحدث</span><span class="li" data-lang="zh">最新动态</span></h2>
+      </div>
+    </div>
+    <div class="latest-wrap">
+      <div class="latest-list">
+        {{#each latestNews}}
+        <a href="/works" class="latest-item">
+          <div class="latest-thumb" style="background-image:url('{{image}}');"></div>
+          <div class="latest-body">
+            <div class="latest-cat">{{division}}</div>
+            <h3 class="latest-title">
+              <span class="li on" data-lang="id">{{titleId}}</span>
+              <span class="li" data-lang="en">{{titleEn}}</span>
+              <span class="li" data-lang="ar">{{titleAr}}</span>
+              <span class="li" data-lang="zh">{{titleZh}}</span>
+            </h3>
+            <p class="latest-desc">
+              <span class="li on" data-lang="id">{{descId}}</span>
+              <span class="li" data-lang="en">{{descEn}}</span>
+              <span class="li" data-lang="ar">{{descAr}}</span>
+              <span class="li" data-lang="zh">{{descZh}}</span>
+            </p>
+            <div class="latest-time">{{date}} · {{division}}</div>
+          </div>
+        </a>
+        {{/each}}
+      </div>
+      <div class="sidebar">
+        <div class="sidebar-title">HUD Daily</div>
+        {{#each sidebarNews}}
+        <div class="sb-item">
+          <div class="sb-thumb" style="background-image:url('{{image}}');"></div>
+          <div>
+            <div class="sb-cat">{{division}}</div>
+            <div class="sb-title">
+              <span class="li on" data-lang="id">{{titleId}}</span>
+              <span class="li" data-lang="en">{{titleEn}}</span>
+              <span class="li" data-lang="ar">{{titleAr}}</span>
+              <span class="li" data-lang="zh">{{titleZh}}</span>
+            </div>
+            <div class="sb-time">{{time}}</div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CROSS PROMO -->
+<div class="xpromo">
+  <div class="xpromo-inner">
+    {{#each divisions}}
+    <div class="xp-card" onclick="window.location.href='/works?div={{id}}'">
+      <div class="xp-label">{{label}}</div>
+      <h3 class="xp-title">
+        <span class="li on" data-lang="id">{{titleId}}</span>
+        <span class="li" data-lang="en">{{titleEn}}</span>
+        <span class="li" data-lang="ar">{{titleAr}}</span>
+        <span class="li" data-lang="zh">{{titleZh}}</span>
+      </h3>
+      <p class="xp-desc">
+        <span class="li on" data-lang="id">{{descId}}</span>
+        <span class="li" data-lang="en">{{descEn}}</span>
+        <span class="li" data-lang="ar">{{descAr}}</span>
+        <span class="li" data-lang="zh">{{descZh}}</span>
+      </p>
+      <span class="xp-link">
+        <span class="li on" data-lang="id">{{linkId}}</span>
+        <span class="li" data-lang="en">{{linkEn}}</span>
+        <span class="li" data-lang="ar">{{linkAr}}</span>
+        <span class="li" data-lang="zh">{{linkZh}}</span>
+      </span>
+    </div>
+    {{/each}}
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label"><span class="li on" data-lang="id">Divisi Kreatif</span><span class="li" data-lang="en">Creative Divisions</span><span class="li" data-lang="ar">أقسام إبداعية</span><span class="li" data-lang="zh">创意部门</span></div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label"><span class="li on" data-lang="id">Bahasa</span><span class="li" data-lang="en">Languages</span><span class="li" data-lang="ar">لغات</span><span class="li" data-lang="zh">语言</span></div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label"><span class="li on" data-lang="id">Cerita untuk Diceritakan</span><span class="li" data-lang="en">Stories to Tell</span><span class="li" data-lang="ar">قصص تُروى</span><span class="li" data-lang="zh">待讲述的故事</span></div></div>
+    <div class="stat"><div class="stat-num">1</div><div class="stat-label"><span class="li on" data-lang="id">Tujuan Akhir</span><span class="li" data-lang="en">Final Destination</span><span class="li" data-lang="ar">الوجهة النهائية</span><span class="li" data-lang="zh">最终目的地</span></div></div>
+  </div>
+</div>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-symbol">
+      <svg width="60" height="74" viewBox="0 0 60 74">
+        <line x1="4" y1="62" x2="56" y2="62" stroke="#52B788" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="30" cy="26" r="18" fill="none" stroke="#52B788" stroke-width="1.2"/>
+        <circle cx="30" cy="26" r="5" fill="#2D6A4F"/>
+        <line x1="30" y1="44" x2="30" y2="62" stroke="#52B788" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h2 class="cta-title">
+      <span class="li on" data-lang="id">Punya cerita yang ingin diceritakan?</span>
+      <span class="li" data-lang="en">Have a story you want to tell?</span>
+      <span class="li" data-lang="ar">هل لديك قصة تريد سردها؟</span>
+      <span class="li" data-lang="zh">有想讲述的故事吗？</span>
+    </h2>
+    <p class="cta-desc">
+      <span class="li on" data-lang="id">Tidak ada brief terlalu kecil. Tidak ada mimpi terlalu besar.</span>
+      <span class="li" data-lang="en">No brief too small. No dream too big.</span>
+      <span class="li" data-lang="ar">لا يوجد موجز صغير جداً. لا يوجد حلم كبير جداً.</span>
+      <span class="li" data-lang="zh">没有太小的需求。没有太大的梦想。</span>
+    </p>
+    <a href="/contact" class="sbtn-p">
+      <span class="li on" data-lang="id">Hubungi Kami</span>
+      <span class="li" data-lang="en">Get In Touch</span>
+      <span class="li" data-lang="ar">تواصل معنا</span>
+      <span class="li" data-lang="zh">联系我们</span>
+    </a>
+  </div>
+</section>

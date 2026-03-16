@@ -1,0 +1,112 @@
+<form method="POST" action="/admin/articles/{{#if isNew}}new{{else}}edit/{{article.id}}{{/if}}" enctype="multipart/form-data" class="article-form">
+
+  <div class="form-tabs">
+    <button type="button" class="ftab on" onclick="switchTab('id',this)">🇮🇩 Indonesia</button>
+    <button type="button" class="ftab" onclick="switchTab('en',this)">🇬🇧 English</button>
+    <button type="button" class="ftab" onclick="switchTab('ar',this)">🇸🇦 العربية</button>
+    <button type="button" class="ftab" onclick="switchTab('zh',this)">🇨🇳 中文</button>
+  </div>
+
+  <!-- INDONESIA -->
+  <div class="ftab-content on" id="tab-id">
+    <div class="form-group"><label class="form-label">Judul (Indonesia)</label>
+      <input class="form-input" type="text" name="titleId" value="{{article.titleId}}" placeholder="Judul artikel dalam Bahasa Indonesia">
+    </div>
+    <div class="form-group"><label class="form-label">Isi Artikel (Indonesia)</label>
+      <textarea class="form-textarea tall" name="bodyId" placeholder="Tulis isi artikel di sini...&#10;&#10;Gunakan baris kosong untuk paragraf baru.">{{article.bodyId}}</textarea>
+    </div>
+  </div>
+
+  <!-- ENGLISH -->
+  <div class="ftab-content" id="tab-en">
+    <div class="form-group"><label class="form-label">Title (English)</label>
+      <input class="form-input" type="text" name="titleEn" value="{{article.titleEn}}" placeholder="Article title in English">
+    </div>
+    <div class="form-group"><label class="form-label">Body (English)</label>
+      <textarea class="form-textarea tall" name="bodyEn" placeholder="Write article content here...">{{article.bodyEn}}</textarea>
+    </div>
+  </div>
+
+  <!-- ARABIC -->
+  <div class="ftab-content" id="tab-ar">
+    <div class="form-group"><label class="form-label">العنوان (Arabic)</label>
+      <input class="form-input" type="text" name="titleAr" value="{{article.titleAr}}" placeholder="عنوان المقال بالعربية" dir="rtl">
+    </div>
+    <div class="form-group"><label class="form-label">المحتوى (Arabic)</label>
+      <textarea class="form-textarea tall" name="bodyAr" placeholder="اكتب محتوى المقال هنا..." dir="rtl">{{article.bodyAr}}</textarea>
+    </div>
+  </div>
+
+  <!-- CHINESE -->
+  <div class="ftab-content" id="tab-zh">
+    <div class="form-group"><label class="form-label">标题 (Chinese)</label>
+      <input class="form-input" type="text" name="titleZh" value="{{article.titleZh}}" placeholder="用中文填写文章标题">
+    </div>
+    <div class="form-group"><label class="form-label">内容 (Chinese)</label>
+      <textarea class="form-textarea tall" name="bodyZh" placeholder="在这里写文章内容...">{{article.bodyZh}}</textarea>
+    </div>
+  </div>
+
+  <div class="form-row-3">
+    <div class="form-group">
+      <label class="form-label">Kategori</label>
+      <select class="form-input" name="category">
+        <option value="Berita" {{#eq article.category 'Berita'}}selected{{/eq}}>Berita</option>
+        <option value="Behind The Scenes" {{#eq article.category 'Behind The Scenes'}}selected{{/eq}}>Behind The Scenes</option>
+        <option value="Tutorial" {{#eq article.category 'Tutorial'}}selected{{/eq}}>Tutorial</option>
+        <option value="Film & Series" {{#eq article.category 'Film & Series'}}selected{{/eq}}>Film & Series</option>
+        <option value="Brand Film" {{#eq article.category 'Brand Film'}}selected{{/eq}}>Brand Film</option>
+        <option value="Dokumenter" {{#eq article.category 'Dokumenter'}}selected{{/eq}}>Dokumenter</option>
+        <option value="Podcast" {{#eq article.category 'Podcast'}}selected{{/eq}}>Podcast</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Tags (pisah koma)</label>
+      <input class="form-input" type="text" name="tags" value="{{#each article.tags}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}" placeholder="film, kalimantan, produksi">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Status</label>
+      <label class="toggle-label">
+        <input type="checkbox" name="published" {{#if article.published}}checked{{/if}} {{#if isNew}}checked{{/if}}>
+        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        <span>Tayang</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-row-2">
+    <div class="form-group">
+      <label class="form-label">Gambar (upload)</label>
+      <input class="form-input" type="file" name="image" accept="image/*">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Atau URL Gambar</label>
+      <input class="form-input" type="text" name="imageUrl" value="{{article.image}}" placeholder="https://...">
+    </div>
+  </div>
+
+  {{#unless isNew}}
+  {{#if article.image}}
+  <div class="form-group">
+    <label class="form-label">Gambar saat ini</label>
+    <img src="{{article.image}}" alt="cover" style="max-width:200px;border-radius:4px;border:0.5px solid rgba(45,106,79,0.4);">
+  </div>
+  {{/if}}
+  {{/unless}}
+
+  <div class="form-actions">
+    <a href="/admin/articles" class="btn-secondary">← Batal</a>
+    <button type="submit" class="btn-primary">
+      {{#if isNew}}Simpan Artikel{{else}}Update Artikel{{/if}}
+    </button>
+  </div>
+</form>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('.ftab-content').forEach(c => c.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('tab-' + id).classList.add('on');
+}
+</script>

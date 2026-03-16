@@ -1,0 +1,30 @@
+<div id="page-loader" class="page-loader">
+  <div class="loader-symbol">
+    <svg width="40" height="50" viewBox="0 0 40 50">
+      <line class="loader-h" x1="4" y1="42" x2="36" y2="42" stroke="#52B788" stroke-width="1" stroke-linecap="round" stroke-dasharray="32" stroke-dashoffset="32"/>
+      <circle class="loader-c" cx="20" cy="18" r="10" fill="none" stroke="#52B788" stroke-width="1" stroke-dasharray="63" stroke-dashoffset="63"/>
+      <circle class="loader-dot" cx="20" cy="18" r="2.5" fill="#52B788" opacity="0"/>
+      <line class="loader-v" x1="20" y1="28" x2="20" y2="42" stroke="#52B788" stroke-width="1" stroke-linecap="round" stroke-dasharray="14" stroke-dashoffset="14"/>
+    </svg>
+  </div>
+</div>
+<style>
+.page-loader{position:fixed;inset:0;background:#0A0F0B;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.4s,visibility 0.4s;}
+.page-loader.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+.loader-c{animation:lc 0.8s ease forwards;}
+.loader-dot{animation:ld 0.3s 0.7s ease forwards;}
+.loader-v{animation:lv 0.4s 0.9s ease forwards;}
+.loader-h{animation:lh 0.5s 1.2s ease forwards;}
+@keyframes lc{to{stroke-dashoffset:0;}}
+@keyframes ld{to{opacity:1;}}
+@keyframes lv{to{stroke-dashoffset:0;}}
+@keyframes lh{to{stroke-dashoffset:0;}}
+</style>
+<script>
+window.addEventListener('load',function(){
+  setTimeout(function(){
+    var l=document.getElementById('page-loader');
+    if(l) l.classList.add('hidden');
+  },1600);
+});
+</script>

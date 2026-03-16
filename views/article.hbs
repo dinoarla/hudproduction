@@ -1,0 +1,130 @@
+<article class="article-page">
+
+  {{#if article.image}}
+  <div class="article-hero" style="background-image:url('{{article.image}}');">
+    <div class="article-hero-overlay"></div>
+  </div>
+  {{/if}}
+
+  <div class="article-container">
+    <div class="article-main">
+
+      <div class="article-header">
+        <a href="/blog" class="back-link">
+          ← <span class="li on" data-lang="id">Semua Artikel</span>
+          <span class="li" data-lang="en">All Articles</span>
+          <span class="li" data-lang="ar">كل المقالات</span>
+          <span class="li" data-lang="zh">所有文章</span>
+        </a>
+        <div class="article-meta">
+          <span class="article-cat">{{article.category}}</span>
+          <span class="article-date">{{formatDate article.createdAt}}</span>
+        </div>
+        <h1 class="article-title">
+          <span class="li on" data-lang="id">{{or article.titleId article.titleEn}}</span>
+          <span class="li" data-lang="en">{{or article.titleEn article.titleId}}</span>
+          <span class="li" data-lang="ar">{{or article.titleAr article.titleId}}</span>
+          <span class="li" data-lang="zh">{{or article.titleZh article.titleId}}</span>
+        </h1>
+        {{#if article.tags.length}}
+        <div class="article-tags">
+          {{#each article.tags}}<span class="bc-tag">{{this}}</span>{{/each}}
+        </div>
+        {{/if}}
+      </div>
+
+      <div class="article-body">
+        <div class="li on" data-lang="id">{{{articleBody article.bodyId}}}</div>
+        <div class="li" data-lang="en">{{{articleBody article.bodyEn}}}</div>
+        <div class="li" data-lang="ar" style="direction:rtl;">{{{articleBody article.bodyAr}}}</div>
+        <div class="li" data-lang="zh">{{{articleBody article.bodyZh}}}</div>
+      </div>
+
+      <div class="article-share">
+        <span class="share-label">
+          <span class="li on" data-lang="id">Bagikan</span>
+          <span class="li" data-lang="en">Share</span>
+          <span class="li" data-lang="ar">شارك</span>
+          <span class="li" data-lang="zh">分享</span>
+        </span>
+        <button class="share-btn" onclick="shareWA()">WhatsApp</button>
+        <button class="share-btn" onclick="copyLink()">Copy Link</button>
+      </div>
+    </div>
+
+    <aside class="article-sidebar">
+      <div class="as-section">
+        <div class="as-title">
+          <span class="li on" data-lang="id">Tentang HUD</span>
+          <span class="li" data-lang="en">About HUD</span>
+          <span class="li" data-lang="ar">عن HUD</span>
+          <span class="li" data-lang="zh">关于HUD</span>
+        </div>
+        <div class="as-logo">
+          <svg width="36" height="44" viewBox="0 0 36 44">
+            <line x1="3" y1="37" x2="33" y2="37" stroke="#2D6A4F" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="18" cy="14" r="10" fill="none" stroke="#2D6A4F" stroke-width="1"/>
+            <circle cx="18" cy="14" r="2.5" fill="#2D6A4F"/>
+            <line x1="18" y1="24" x2="18" y2="37" stroke="#2D6A4F" stroke-width="1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p class="as-desc">
+          <span class="li on" data-lang="id">HUD adalah production house berbasis di Pontianak, Kalimantan Barat. Film, Series, Dokumenter, Brand Film, Animasi, Cinematic Podcast.</span>
+          <span class="li" data-lang="en">HUD is a production house based in Pontianak, West Kalimantan. Film, Series, Documentary, Brand Film, Animation, Cinematic Podcast.</span>
+          <span class="li" data-lang="ar">HUD بيت إنتاج في بونتياناك، إندونيسيا. أفلام ووثائقيات وبودكاست سينمائي.</span>
+          <span class="li" data-lang="zh">HUD是位于西加里曼丹坤甸的制片公司。电影、纪录片、品牌短片、动画、电影播客。</span>
+        </p>
+        <a href="/contact" class="sbtn-p" style="width:100%;text-align:center;display:block;font-size:8px;">
+          <span class="li on" data-lang="id">Hubungi Kami</span>
+          <span class="li" data-lang="en">Contact Us</span>
+          <span class="li" data-lang="ar">تواصل معنا</span>
+          <span class="li" data-lang="zh">联系我们</span>
+        </a>
+      </div>
+
+      {{#if related.length}}
+      <div class="as-section" style="margin-top:24px;">
+        <div class="as-title">
+          <span class="li on" data-lang="id">Artikel Lain</span>
+          <span class="li" data-lang="en">More Articles</span>
+          <span class="li" data-lang="ar">مقالات أخرى</span>
+          <span class="li" data-lang="zh">更多文章</span>
+        </div>
+        {{#each related}}
+        <a href="/blog/{{or slug id}}" class="as-item">
+          {{#if image}}<div class="asi-thumb" style="background-image:url('{{image}}');"></div>{{/if}}
+          <div class="asi-body">
+            <div class="asi-cat">{{category}}</div>
+            <div class="asi-title">
+              <span class="li on" data-lang="id">{{truncate (or titleId titleEn) 50}}</span>
+              <span class="li" data-lang="en">{{truncate (or titleEn titleId) 50}}</span>
+              <span class="li" data-lang="ar">{{truncate (or titleAr titleId) 50}}</span>
+              <span class="li" data-lang="zh">{{truncate (or titleZh titleId) 50}}</span>
+            </div>
+          </div>
+        </a>
+        {{/each}}
+      </div>
+      {{/if}}
+    </aside>
+  </div>
+</article>
+
+<script>
+function shareWA() {
+  var url = encodeURIComponent(window.location.href);
+  var title = encodeURIComponent(document.querySelector('.article-title .on')?.textContent || 'HUD Article');
+  window.open('https://api.whatsapp.com/send?text=' + title + '%20' + url, '_blank');
+}
+function copyLink() {
+  navigator.clipboard?.writeText(window.location.href).then(function() {
+    showToast('Link disalin!', 2000);
+  }) || (function() {
+    var ta = document.createElement('textarea');
+    ta.value = window.location.href;
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    showToast('Link disalin!', 2000);
+  })();
+}
+</script>
