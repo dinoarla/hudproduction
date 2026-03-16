@@ -164,7 +164,9 @@ router.post('/articles/delete/:id', requireAuth, (req, res) => {
 router.get('/contacts', requireAuth, (req, res) => {
   const all = contacts.get('submissions').value().slice().reverse();
   // Mark all as read
-  contacts.get('submissions').each(c => { c.read = true; }).write();
+  const subs = contacts.get('submissions').value();
+  subs.forEach(c => { c.read = true; });
+  contacts._write();
   res.render('admin/contacts', adminData({ title: 'Brief Masuk — HUD Admin', submissions: all }));
 });
 
@@ -203,7 +205,8 @@ router.post('/settings/password', requireAuth, async (req, res) => {
   }
 
   const hash = await bcrypt.hash(newPassword, 10);
-  settings.get('admin').assign({ password: hash }).write();
+  const adminData = settings.get('admin').value();
+  settings.set('admin', { ...adminData, password: hash });
   res.redirect('/admin/settings?saved=1');
 });
 

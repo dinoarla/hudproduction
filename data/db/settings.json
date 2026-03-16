@@ -1,0 +1,14 @@
+{
+  "admin": {
+    "username": "admin",
+    "password": "$2a$10$xQ7jR9u.kJfVfvNkB5D1COqYRqVt3pZ9y1A2kL8mNpX0sWdHgEcRy"
+  },
+  "site": {
+    "announcement": "Selamat datang di HUD Production House — Happiness Until Destination ✦ Sekarang menerima proyek Brand Film & Web Series 2025",
+    "whatsapp": "+6281234567890",
+    "instagram": "@hudproduction",
+    "youtube": "HUD Production House",
+    "email": "hello@hudproduction.id",
+    "openForBrief": true
+  }
+}
